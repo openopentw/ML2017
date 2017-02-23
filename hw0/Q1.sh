@@ -1,2 +1,2 @@
 #!/bin/bash
-python hw0_q1.py $@
+python Q1.py $@
