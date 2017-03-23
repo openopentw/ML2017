@@ -12,8 +12,7 @@ DATA_FILE = sys.argv[1]
 TEST_FILE = sys.argv[2]
 OUTPUT = sys.argv[3]
 
-print(DATA_FILE, TEST_FILE, OUTPUT)
-return 0
+# print(sys.argv[1], sys.argv[2], sys.argv[3])
 # }}}
 
 NORM = 1
@@ -53,7 +52,9 @@ Features:
 10 RAINFALL	11 RH		12 SO2		13 THC		14 WD_HR
 15 WIND_DIREC	16 WIND_SPEED	17 WS_HR
 """
-FEATURE = np.array([8, 9, 10])
+FEATURE = np.array([9])     # best
+if sys.argv[4] == '1':        # not best
+    FEATURE = np.array([8, 9, 10])
 N_FEATURE = FEATURE.size
 
 # Adjust Data To Be Trainable# {{{
@@ -132,20 +133,20 @@ for i in range(5000000):
         sqrt_loss *= STD[9][0]
     LOSS = np.sum(sqrt_loss ** 2) + LMBD * np.sum(W ** 2)
 
-    print(i, np.sqrt(LOSS/num_test))
+    # print(i, np.sqrt(LOSS/num_test))
     # if i > 3000 and LOSS > LAST_LOSS:
     if i > 50 and LOSS > LAST_LOSS:
         # print(i, np.sqrt(LOSS/num_test))
         break
 
-print(b)
-print(W)
+# print(b)
+# print(W)
 
 sqrt_loss = DATA[:,-1].reshape((DATA.shape[0], 1)) - ( b + np.dot(DATA[:,:-1], W.T ) )
 if NORM == 1:
     sqrt_loss *= STD[9][0]
 LOSS = np.sum(sqrt_loss ** 2)
-print(np.sqrt(LOSS/DATA.shape[0]))
+# print(np.sqrt(LOSS/DATA.shape[0]))
 
 """
 Calculate Ans & Print Out
