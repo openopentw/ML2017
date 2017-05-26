@@ -1,0 +1,8 @@
+#
+####### requirements.txt #######
+#
+###### Requirements without Version Specifiers ######
+numpy
+nltk
+h5py
+#
